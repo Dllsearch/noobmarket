@@ -23,15 +23,34 @@ private:
 
 	DiscountType currentDiscountType;
 	float basePrice, discountPrice, discountPC, priceCalculated; // discountVal
+	std::string name, description;
 
-	void recalculatePrice();
+
+	void recalculatePrice()
+	{
+		switch (currentDiscountType)
+		{
+		case 1:
+			priceCalculated = discountPrice;
+			break;
+
+		case 2:
+			priceCalculated = basePrice * (1 - discountPC / 100);
+			break;
+
+		default:
+			priceCalculated = basePrice;
+			break;
+		}
+	}
 
 	std::vector<coupon> coupons;
 
 public:
 
-	goods_page(float basePriceSet)
+	goods_page(std::string nameSet, float basePriceSet)
 	{
+		name = nameSet;
 		basePrice = basePriceSet;
 		recalculatePrice();
 	}
@@ -39,6 +58,16 @@ public:
 	float getPrice()
 	{
 		return priceCalculated;
+	}
+
+	void setName(std::string nameSet)
+	{
+		name = nameSet;
+	}
+
+	void setDesc(std::string descriptionSet)
+	{
+		description = descriptionSet;
 	}
 
 	void setBasePrice(float price)
@@ -59,10 +88,8 @@ public:
 		recalculatePrice();
 	}
 
-	std::string generateCouponPC(float discountPC);
+	//std::string generateCouponPC(float discountPC);
 
-	std::string generateCouponDiscount(float discount);
+	//std::string generateCouponDiscount(float discount);
 
 };
-
-

@@ -3,6 +3,8 @@
 #include <string>
 #include <vector>
 
+/*
+
 class goods_page
 {
 private:
@@ -33,3 +35,4 @@ public:
 
 };
 
+*/
